@@ -1,0 +1,90 @@
+# 口语 → 中医术语映射。用于 L2 降级时的查询扩展。
+# canonical 是典籍里的标准词，aliases 是用户可能说的口语。
+groups:
+  - canonical: 恶寒
+    aliases: [怕冷, 畏寒, 发冷, 冷得厉害, 身上冷]
+  - canonical: 无汗
+    aliases: [没有汗, 不出汗, 不发汗, 一点汗都没有, 汗都没有, 不出一点汗]
+  - canonical: 汗出
+    aliases: [出汗, 有汗, 老是出汗, 一动就出汗]
+  - canonical: 头项强痛
+    aliases: [脖子疼, 脖子僵硬, 后脑勺疼, 项强, 颈椎疼, 脖子后面僵, 脖子僵, 脖子发硬, 后颈僵]
+  - canonical: 发热
+    aliases: [发烧, 体温高, 烧起来]
+  - canonical: 往来寒热
+    aliases: [忽冷忽热, 一阵冷一阵热, 冷热交替]
+  - canonical: 口苦
+    aliases: [嘴里苦, 口里发苦]
+  - canonical: 咽干
+    aliases: [嗓子干, 喉咙干]
+  - canonical: 目眩
+    aliases: [眼睛发花, 看东西转, 眼前发黑]
+  - canonical: 眩晕
+    aliases: [头晕, 头昏, 晕眩, 天旋地转]
+  - canonical: 心下痞
+    aliases: [胃里堵, 心口堵, 胃胀堵得慌]
+  - canonical: 胃脘痛
+    aliases: [胃疼, 胃痛, 心口疼]
+  - canonical: 下利
+    aliases: [拉肚子, 腹泻, 大便稀]
+  - canonical: 便秘
+    aliases: [大便不通, 拉不出来, 排便困难]
+  - canonical: 小便不利
+    aliases: [尿不出来, 小便不畅, 尿少]
+  - canonical: 不寐
+    aliases: [失眠, 睡不着, 睡不好, 入睡困难]
+  - canonical: 心悸
+    aliases: [心慌, 心跳快, 心脏跳得慌]
+  - canonical: 手足厥冷
+    aliases: [手脚冰凉, 手脚冰冷, 四肢冰冷, 手脚发凉]
+  - canonical: 咳嗽
+    aliases: [咳, 老咳, 干咳, 咳嗽不止]
+  - canonical: 气喘
+    aliases: [喘, 喘不上气, 气短, 呼吸费劲]
+  - canonical: 短气
+    aliases: [气不够用, 胸闷气短]
+  - canonical: 水肿
+    aliases: [浮肿, 肿起来, 腿肿]
+  - canonical: 黄疸
+    aliases: [眼睛发黄, 皮肤发黄]
+  - canonical: 口渴
+    aliases: [口干, 老想喝水, 渴得厉害]
+  - canonical: 倦怠
+    aliases: [没力气, 乏力, 疲劳, 累, 没精神]
+  - canonical: 纳差
+    aliases: [不想吃饭, 没胃口, 吃不下, 食欲差]
+  - canonical: 烦躁
+    aliases: [心烦, 心里烦, 静不下来]
+  - canonical: 腰痛
+    aliases: [腰疼, 腰酸]
+  - canonical: 胁痛
+    aliases: [肋叉子疼, 两边肋骨疼, 胁肋痛]
+  - canonical: 麻疹
+    aliases: [起疹子, 出疹]
+  - canonical: 湿疹
+    aliases: [皮肤痒, 起水泡, 湿痒]
+  - canonical: 痤疮
+    aliases: [长痘, 青春痘, 粉刺]
+  - canonical: 阳痿
+    aliases: [不行, 硬不起来]
+  - canonical: 痛经
+    aliases: [月经疼, 来例假肚子疼]
+  - canonical: 崩漏
+    aliases: [月经不停, 流血不止]
+
+# 口语症状 → 六经证型倾向，用于 L3 宽召回时的语义补全
+syndromes:
+  - canonical: 太阳伤寒
+    aliases: [恶寒无汗, 怕冷不出汗, 全身酸痛]
+  - canonical: 太阳中风
+    aliases: [汗出恶风, 出汗怕风]
+  - canonical: 少阳病
+    aliases: [口苦咽干, 往来寒热, 胸胁苦满]
+  - canonical: 阳明病
+    aliases: [大热大渴, 便秘腹满, 潮热谵语]
+  - canonical: 太阴病
+    aliases: [腹满而吐, 食不下, 自利益甚]
+  - canonical: 少阴病
+    aliases: [但欲寐, 四肢厥冷, 脉微细]
+  - canonical: 厥阴病
+    aliases: [上热下寒, 消渴气上撞心]

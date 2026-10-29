@@ -1,0 +1,14 @@
+【舌象 / 面色图像观察】
+
+以下由图像识别模型自动生成，**仅供参考，可能有误**。与用户文字描述冲突时，以文字为准。
+
+{% if low_confidence %}
+⚠️ 图像质量不足（{{ confidence_note }}），以下描述可靠性偏低，不要据此下辨证结论。
+{% endif %}
+
+舌质：{{ v.tongue_body_color or "未识别" }} ｜ 舌体：{{ v.tongue_body_shape or "未识别" }} ｜ 舌苔：{{ v.coating_color or "未识别" }}{% if v.coating_texture %}（{{ v.coating_texture }}）{% endif %} ｜ 润燥：{{ v.moisture or "未识别" }}
+面色：{{ v.face_color or "未识别" }} ｜ 唇色：{{ v.lip_color or "未识别" }}
+{% if v.notable_findings %}需注意：{{ v.notable_findings|join("、") }}{% endif %}
+{% if v.unclear %}判断不确定：{{ v.unclear|join("；") }}{% endif %}
+
+使用要求：把图像观察和用户文字症状合起来看。若图像与文字矛盾，明确说出矛盾点，不要强行统一。若关键项是"未识别"，在回答里指出需要补充什么（例如"光线太暗，看苔色不清，能不能换个自然光再拍一张"）。

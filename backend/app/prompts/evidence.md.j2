@@ -1,0 +1,14 @@
+【知识证据】共 {{ hits|length }} 条。引用时在句末标【序号】，不要标没用到的。
+
+{% for h in hits %}
+【{{ loop.index }}】{{ h.label }}
+{{ h.text }}
+{% if not loop.last %}
+
+---
+{% endif %}
+{% endfor %}
+
+{% if insufficient %}
+⚠️ 以上证据可能不足以完整回答用户问题。若确实无法回答，按"未覆盖"处理：如实说明资料里没讲到，给最接近的方向，不要硬套方剂。
+{% endif %}

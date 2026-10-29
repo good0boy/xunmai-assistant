@@ -1,0 +1,72 @@
+:root {
+  /* 浅色暖调，贴合中医古籍气质 */
+  --xm-bg: #f7f4ee;
+  --xm-bg-elevated: #ffffff;
+  --xm-bg-sunken: #efe9df;
+  --xm-border: #e2d9cc;
+  --xm-border-strong: #cdbfa9;
+
+  --xm-text: #2b2620;
+  --xm-text-secondary: #6b6156;
+  --xm-text-muted: #948a7d;
+
+  --xm-accent: #8c5a2b;
+  --xm-accent-soft: #f0e3d3;
+  --xm-accent-strong: #6d431f;
+
+  --xm-danger: #b2372c;
+  --xm-danger-soft: #fbe9e7;
+  --xm-warn: #a86a10;
+  --xm-warn-soft: #fdf2dd;
+  --xm-ok: #3f7a4f;
+
+  --xm-radius: 10px;
+  --xm-radius-sm: 6px;
+  --xm-shadow: 0 1px 2px rgba(43, 38, 32, 0.06), 0 4px 14px rgba(43, 38, 32, 0.05);
+
+  --xm-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif;
+  --xm-font-serif: 'Songti SC', 'STSong', 'Noto Serif SC', Georgia, serif;
+  --xm-font-mono: 'JetBrains Mono', 'Cascadia Code', Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--xm-bg);
+  color: var(--xm-text);
+  font-family: var(--xm-font);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--xm-accent-soft);
+  color: var(--xm-accent-strong);
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--xm-border-strong);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--xm-text-muted);
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}

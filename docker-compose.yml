@@ -1,0 +1,63 @@
+name: xunmai
+
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.12.4
+    container_name: xunmai-qdrant
+    volumes:
+      - ./data/qdrant:/qdrant/storage
+    environment:
+      QDRANT__LOG_LEVEL: WARN
+      QDRANT__SERVICE__GRPC_PORT: 6334
+    # 仅回环映射，供本地调试；外网不可达
+    ports:
+      - "127.0.0.1:6333:6333"
+    restart: unless-stopped
+    # 官方镜像不含 curl/wget，healthcheck 不可靠；由 backend 侧重试连接兜底
+
+  backend:
+    build:
+      context: ./backend
+    container_name: xunmai-backend
+    env_file:
+      - .env
+    environment:
+      # 容器内一律用绝对路径，不依赖 .env 里的本地写法。
+      # KB_ROOT 必须指到主语料子目录 /kb/nihaixia：collect_chunks 会扫描整个
+      # KB_ROOT，指到 /kb 会把 external/（重复入库）和 models/（ONNX 缓存被
+      # 当语料切块）一起扫进 tcm_kb。
+      KB_ROOT: /kb/nihaixia
+      KB_EXTERNAL_ROOT: /kb/external
+      # 随包 embedding 模型的源目录（/kb 只读）。启动时拷到 FASTEMBED_CACHE_PATH。
+      # 不设的话容器内默认值解析到 /app/kb_src/models —— 不存在，内网环境 dense 直接降级。
+      KB_MODELS_DIR: /kb/models
+      FASTEMBED_CACHE_PATH: /data/models
+      UPLOAD_DIR: /data/uploads
+      DB_URL: sqlite+aiosqlite:////data/app.db
+      QDRANT_URL: http://qdrant:6333
+    volumes:
+      - ./data:/data
+      - ./backend/kb_src:/kb:ro
+      - ./backend/app/config:/app/app/config:ro
+      - ./backend/app/prompts:/app/app/prompts:ro
+    depends_on:
+      - qdrant
+    ports:
+      - "127.0.0.1:8000:8000"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/api/v1/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 40s
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: xunmai-frontend
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+    restart: unless-stopped

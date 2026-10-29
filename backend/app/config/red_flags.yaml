@@ -1,0 +1,91 @@
+# 红旗症状：命中即强制就医提示，覆盖风格规则
+# any_of 至少命中 1 个，且 with_any 至少命中 1 个，才算触发（避免单字误伤）
+
+rules:
+  - id: chest_pain
+    label: 胸痛伴大汗
+    level: emergency
+    # 「胸口」单独出现不算，必须配 with_any 里的危险伴症
+    any_of: [胸痛, 胸口, 心口, 前胸, 胸骨后, 胸前区, 心前区]
+    with_any: [冷汗, 大汗, 出冷汗, 压榨, 憋闷, 放射, 左臂, 下颌, 濒死, 剧烈疼, 痛得厉害]
+    note: 疑似急性冠脉综合征
+
+  - id: stroke
+    label: 中风征象
+    level: emergency
+    any_of: [昏倒, 晕倒, 昏迷, 意识不清, 抽搐, 口角歪斜, 嘴歪, 半身不遂, 偏瘫, 说话不清, 语言不清, 手脚不遂]
+    with_any: [突然, 一下子, 刚刚, 突然之间, 刚才]
+    note: 疑似脑卒中
+
+  - id: stroke_single
+    label: 中风征象
+    level: emergency
+    any_of: [半身不遂, 口角歪斜, 说话不清, 意识不清, 口眼歪斜]
+    with_any: []
+    note: 单项即可判定
+
+  - id: dyspnea
+    label: 呼吸困难
+    level: emergency
+    any_of: [喘不上气, 呼吸困难, 气都吸不进, 不能平躺, 喘不能卧, 口唇发紫, 嘴唇发紫, 憋得慌]
+    with_any: []
+    note: 呼吸衰竭风险
+
+  - id: severe_bleeding
+    label: 大出血
+    level: emergency
+    any_of: [呕血, 吐血, 咯血, 大量便血, 血崩, 崩漏不止, 流血不止, 大出血]
+    with_any: []
+    note: 失血性风险
+
+  - id: meningitis
+    label: 高热伴脑膜刺激征
+    level: emergency
+    any_of: [高热, 高烧, 发烧]
+    with_any: [脖子硬, 颈项强直, 剧烈头痛, 喷射性呕吐, 皮疹]
+    note: 中枢感染风险
+
+  - id: pregnancy
+    label: 孕期异常
+    level: emergency
+    any_of: [怀孕, 孕妇, 妊娠, 孕期, 有孕]
+    with_any: [出血, 见红, 腹痛, 肚子疼, 肚子痛, 胎动]
+    note: 产科急症风险
+
+  - id: infant
+    label: 婴幼儿重症
+    level: emergency
+    any_of: [宝宝, 婴儿, 小孩, 孩子, 新生儿, 幼儿]
+    with_any: [高烧, 高热, 抽搐, 精神差, 不吃奶, 拒食, 萎靡, 昏迷, 昏睡]
+    note: 儿科急症风险
+
+  - id: acute_abdomen
+    label: 急腹症
+    level: emergency
+    any_of: [肚子疼, 腹痛, 肚子痛, 腹部剧痛]
+    with_any: [板状, 板子, 硬得像, 硬邦邦, 按下去疼, 按着更疼, 反跳痛, 剧痛难忍, 疼得打滚, 痛得打滚]
+    note: 外科急腹症风险
+
+  - id: mental
+    label: 精神危机
+    level: emergency
+    any_of: [自杀, 不想活, 活不下去, 想死, 轻生, 了结自己]
+    with_any: []
+    note: 需要心理危机干预
+
+# 重症病名：命中则用重症版免责声明
+severe_terms:
+  - 癌症
+  - 癌
+  - 肿瘤
+  - 白血病
+  - 血癌
+  - 尿毒症
+  - 肾衰竭
+  - 肝硬化
+  - 中风
+  - 心梗
+  - 心肌梗塞
+  - 红斑狼疮
+  - 艾滋病
+  - 渐冻症

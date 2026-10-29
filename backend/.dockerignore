@@ -1,0 +1,11 @@
+# 语料与模型不进镜像：compose 把 kb_src 以只读卷挂到 /kb，
+# 打进 build context 只会让每次 build 多传 ~107MB（语料 15MB + 模型 92MB）
+kb_src/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+# 本地临时产物
+_*.txt
+*.log

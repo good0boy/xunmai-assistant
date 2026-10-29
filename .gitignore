@@ -1,0 +1,53 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# ---- 环境 ----
+.env
+.env.local
+
+# ---- 数据（全部挂卷，不进版本控制）----
+data/qdrant/
+data/uploads/
+data/models/
+data/reports/
+data/app.db
+data/*.db-shm
+data/*.db-wal
+
+# ---- 知识库源（clone 而来，不进版本控制）----
+backend/kb_src/
+
+# ---- 发布产物 ----
+dist_release/
+
+# ---- 前端 ----
+node_modules/
+frontend/dist/
+frontend/.vite/
+
+# ---- 编辑器 / 系统 ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+
+# embedding 模型（94MB，随部署包发布，不进 git）
+backend/kb_src/models/
+
+# ---- 本地临时 / 测试产物 ----
+backend/_local/
+backend/_*.txt
+data/*.bak*
+data/probe_vecs.pkl
+
+# ---- agent 工作记忆（本地协作数据，不公开）----
+.workbuddy/
+
+# ---- 临时探针脚本 ----
+backend/scripts/_*.py

@@ -1,0 +1,476 @@
+# 检索评测集（gold set）
+# 说明：expect_files 列的是「可接受的正确来源」，古文内容会跨篇重复（如小柴胡汤同时出现在
+# 太阳篇、少阳篇、补齐篇、六经公式速查），标注过窄会把正确召回判成失败。
+# 判定：top-k 中命中任一 expect_files 即为 hit。
+
+- q: "小柴胡汤什么时候用"
+  category: 方名直查
+  expect_files:
+    - modules/02_shanghan_other.md
+    - modules/13_shanghan_quebing.md
+    - modules/01_shanghan_sun.md
+    - references/distilled/01-six-meridian-formulas.md
+  expect_formula: 小柴胡汤
+
+- q: "葛根汤主治什么"
+  category: 方名直查
+  expect_files:
+    - modules/01_shanghan_sun.md
+    - modules/13_shanghan_quebing.md
+    - references/distilled/05-clinical-dose-quickref.md
+    - references/distilled/03-clinical-experience.md
+  expect_formula: 葛根汤
+
+- q: "麻黄汤和桂枝汤有什么区别"
+  category: 方名直查
+  expect_files:
+    - modules/01_shanghan_sun.md
+    - references/distilled/01-six-meridian-formulas.md
+    - references/distilled/03-clinical-experience.md
+    - SKILL.md
+    - modules/04_jingui.md
+
+- q: "白虎汤证的四大症状"
+  category: 方名直查
+  expect_files:
+    - modules/02_shanghan_other.md
+    - modules/13_shanghan_quebing.md
+    - references/distilled/01-six-meridian-formulas.md
+  expect_formula: 白虎汤
+
+- q: "四逆汤用于什么情况"
+  category: 方名直查
+  expect_files:
+    - modules/02_shanghan_other.md
+    - modules/13_shanghan_quebing.md
+    - modules/01_shanghan_sun.md
+    - references/distilled/01-six-meridian-formulas.md
+  expect_formula: 四逆汤
+
+- q: "小青龙汤的组成和剂量"
+  category: 方名直查
+  expect_files:
+    - modules/01_shanghan_sun.md
+    - modules/13_shanghan_quebing.md
+    - references/distilled/05-clinical-dose-quickref.md
+    - references/distilled/06-clinical-dose-c99.md
+  expect_formula: 小青龙汤
+
+- q: "苓桂术甘汤治什么病"
+  category: 方名直查
+  expect_files:
+    - modules/04_jingui.md
+    - modules/01_shanghan_sun.md
+    - modules/13_shanghan_quebing.md
+    - references/distilled/01-six-meridian-formulas.md
+  expect_formula: 苓桂术甘汤
+
+- q: "大承气汤什么时候用"
+  category: 方名直查
+  expect_files:
+    - modules/02_shanghan_other.md
+    - modules/13_shanghan_quebing.md
+    - references/distilled/01-six-meridian-formulas.md
+  expect_formula: 大承气汤
+
+- q: "炙甘草汤的配伍特点"
+  category: 方名直查
+  expect_files:
+    - modules/13_shanghan_quebing.md
+    - modules/02_shanghan_other.md
+    - modules/01_shanghan_sun.md
+    - SKILL.md
+    - references/distilled/05-clinical-dose-quickref.md
+  expect_formula: 炙甘草汤
+
+- q: "五苓散主治小便不利吗"
+  category: 方名直查
+  expect_files:
+    - modules/01_shanghan_sun.md
+    - modules/04_jingui.md
+    - modules/13_shanghan_quebing.md
+    - references/distilled/01-six-meridian-formulas.md
+  expect_formula: 五苓散
+
+- q: "太阳伤寒的证候和治法"
+  category: 证型辨证
+  expect_files:
+    - modules/01_shanghan_sun.md
+    - references/distilled/01-six-meridian-formulas.md
+    - SKILL.md
+
+- q: "少阳病的提纲是什么"
+  category: 证型辨证
+  expect_files:
+    - modules/02_shanghan_other.md
+    - modules/13_shanghan_quebing.md
+    - references/distilled/01-six-meridian-formulas.md
+
+- q: "少阴病的辨证要点"
+  category: 证型辨证
+  expect_files:
+    - modules/02_shanghan_other.md
+    - modules/13_shanghan_quebing.md
+    - references/distilled/01-six-meridian-formulas.md
+
+- q: "厥阴病上热下寒怎么治"
+  category: 证型辨证
+  expect_files:
+    - modules/02_shanghan_other.md
+    - modules/13_shanghan_quebing.md
+    - references/distilled/01-six-meridian-formulas.md
+
+- q: "阳明腑实分几层"
+  category: 证型辨证
+  expect_files:
+    - modules/02_shanghan_other.md
+    - modules/13_shanghan_quebing.md
+    - references/distilled/01-six-meridian-formulas.md
+
+- q: "太阴病和少阴病的区别"
+  category: 证型辨证
+  expect_files:
+    - modules/02_shanghan_other.md
+    - modules/13_shanghan_quebing.md
+    - references/distilled/01-six-meridian-formulas.md
+
+- q: "六经传变顺序是怎样的"
+  category: 证型辨证
+  expect_files:
+    - SKILL.md
+    - references/distilled/01-six-meridian-formulas.md
+    - modules/01_shanghan_sun.md
+
+- q: "金匮要略里水气病怎么辨"
+  category: 证型辨证
+  expect_files:
+    - modules/04_jingui.md
+
+- q: "胸痹心痛短气的治法"
+  category: 证型辨证
+  expect_files:
+    - modules/04_jingui.md
+
+- q: "痰饮病有四饮之分吗"
+  category: 证型辨证
+  expect_files:
+    - modules/04_jingui.md
+
+- q: "我怕冷，一点汗都没有，脖子后面僵得厉害"
+  category: 口语症状
+  expect_files:
+    - modules/01_shanghan_sun.md
+    - modules/13_shanghan_quebing.md
+    - references/distilled/03-clinical-experience.md
+  expect_symptoms: [恶寒, 无汗]
+
+- q: "老是忽冷忽热的，嘴里发苦"
+  category: 口语症状
+  expect_files:
+    - references/distilled/01-six-meridian-formulas.md
+    - modules/02_shanghan_other.md
+    - modules/13_shanghan_quebing.md
+    - modules/01_shanghan_sun.md
+  expect_symptoms: [往来寒热, 口苦]
+
+- q: "晚上睡不着，心里烦得慌"
+  category: 口语症状
+  expect_files:
+    - modules/02_shanghan_other.md
+    - modules/03_yian.md
+    - cases/00_merged_table.md
+    - modules/05_huangdi_neijing.md
+    - references/distilled/01-six-meridian-formulas.md
+  expect_symptoms: [失眠, 烦躁]
+
+- q: "手脚一年到头都是冰凉的"
+  category: 口语症状
+  expect_files:
+    - modules/02_shanghan_other.md
+    - modules/13_shanghan_quebing.md
+    - modules/01_shanghan_sun.md
+    - modules/03_yian.md
+    - cases/00_merged_table.md
+    - references/distilled/01-six-meridian-formulas.md
+  expect_symptoms: [手足厥冷]
+
+- q: "头晕得天旋地转，还老想吐"
+  category: 口语症状
+  expect_files:
+    - modules/04_jingui.md
+    - modules/03_yian.md
+    - cases/00_merged_table.md
+    - modules/05_huangdi_neijing.md
+    - references/distilled/01-six-meridian-formulas.md
+  expect_symptoms: [眩晕, 呕吐]
+
+- q: "拉肚子拉了好几天，吃什么拉什么"
+  category: 口语症状
+  expect_files:
+    - modules/02_shanghan_other.md
+    - modules/04_jingui.md
+    - modules/13_shanghan_quebing.md
+    - cases/00_merged_table.md
+    - modules/03_yian.md
+  expect_symptoms: [下利]
+
+- q: "咳嗽有痰，痰是白的稀的"
+  category: 口语症状
+  expect_files:
+    - modules/01_shanghan_sun.md
+    - modules/04_jingui.md
+    - modules/13_shanghan_quebing.md
+    - modules/08_huangdi_detail.md
+    - references/distilled/03-clinical-experience.md
+  expect_symptoms: [咳嗽]
+
+- q: "腰酸得直不起来，腿也没劲"
+  category: 口语症状
+  expect_files:
+    - modules/04_jingui.md
+    - cases/00_merged_table.md
+    - modules/02_shanghan_other.md
+    - modules/03_yian.md
+  expect_symptoms: [腰痛]
+
+- q: "月经来了半个月还没干净"
+  category: 口语症状
+  expect_files:
+    - modules/04_jingui.md
+    - cases/00_merged_table.md
+    - modules/03_yian.md
+  expect_symptoms: [崩漏]
+
+- q: "一动就出汗，风一吹就觉得冷"
+  category: 口语症状
+  expect_files:
+    - modules/01_shanghan_sun.md
+    - modules/13_shanghan_quebing.md
+    - references/distilled/03-clinical-experience.md
+    - references/distilled/01-six-meridian-formulas.md
+  expect_symptoms: [汗出, 恶风]
+
+- q: "倪师治肝癌常用什么方"
+  category: 医案
+  expect_files:
+    - cases/00_merged_table.md
+    - cases/01_cancer.md
+    - modules/07_bimen_hantang.md
+    - modules/03_yian.md
+  expect_disease: 肝癌
+
+- q: "乳腺癌的医案有哪些"
+  category: 医案
+  expect_files:
+    - cases/01_cancer.md
+    - cases/00_merged_table.md
+    - modules/03_yian.md
+    - modules/07_bimen_hantang.md
+  expect_disease: 乳癌
+
+- q: "足三里主治什么"
+  category: 针灸
+  expect_files:
+    - modules/09_zhenjiu_bencao.md
+    - references/distilled/02-acupuncture-quick-ref.md
+    - references/distilled/04-acupuncture-highlights.md
+  expect_acupoint: 足三里
+
+- q: "感冒初期应该扎哪些穴位"
+  category: 针灸
+  expect_files:
+    - modules/09_zhenjiu_bencao.md
+    - references/distilled/02-acupuncture-quick-ref.md
+    - references/distilled/04-acupuncture-highlights.md
+
+- q: "生附子和炮附子有什么区别"
+  category: 本草
+  expect_files:
+    - modules/09_zhenjiu_bencao.md
+    - modules/07_bimen_hantang.md
+    - modules/13_shanghan_quebing.md
+    - SKILL.md
+    - references/distilled/05-clinical-dose-quickref.md
+  expect_herb: 附子
+
+# ============ 第二批扩充 ============
+# 扩充动机：原 35 条对配置改动敏感到 ±6%（改一个 boost 值就掉 2~5 条），
+# hit@1 差 14% 只等于 5 条样本，不能当回归门禁。
+# 下面 30 条覆盖两块：
+#   1) 经典原文集（classics/）—— 验证新集合能被检索到
+#   2) 倪师解读集的六经/医案/针灸 —— 补齐原 35 条没覆盖的主题
+# 标注原则：expect_files 写「可接受来源」；classic 类只标确定属于该书的主题。
+
+- q: "难经讲的独取寸口是什么意思"
+  category: 经典原文
+  expect_files:
+    - classics/黄帝八十一难经.md
+
+- q: "千金要方里治风痰的方子"
+  category: 经典原文
+  expect_files:
+    - classics/千金要方.md
+
+- q: "肘后备急方怎么治急症"
+  category: 经典原文
+  expect_files:
+    - classics/肘后备急方.md
+
+- q: "针灸甲乙经记载的针灸取穴原则"
+  category: 经典原文
+  expect_files:
+    - classics/针灸甲乙经.md
+
+- q: "灵枢里讲的经络传变"
+  category: 经典原文
+  expect_files:
+    - classics/黄帝内经_灵枢.md
+    - classics/黄帝内经_素问.md
+
+- q: "素问里的五脏六腑理论"
+  category: 经典原文
+  expect_files:
+    - classics/黄帝内经_素问.md
+    - classics/黄帝内经_灵枢.md
+
+- q: "神农本草经怎么讲上品药材"
+  category: 经典原文
+  expect_files:
+    - classics/神农本草经.md
+
+- q: "本草纲目记载的薏苡仁"
+  category: 经典原文
+  expect_files:
+    - classics/本草纲目.md
+
+- q: "金匮要略的妇人篇讲什么"
+  category: 经典原文
+  expect_files:
+    - classics/金匮要略.md
+
+- q: "伤寒论原文里太阳病提纲"
+  category: 经典原文
+  expect_files:
+    - classics/伤寒论.md
+    - modules/01_shanghan_sun.md
+
+- q: "中医养生的四季作息原则"
+  category: 经典原文
+  expect_files:
+    - classics/中医养生学.md
+    - classics/自我调养巧治病.md
+
+- q: "邹孟城三十年临证经验集里的用药心得"
+  category: 经典原文
+  expect_files:
+    - classics/邹孟城三十年临证经验集.md
+
+- q: "中药基本理论里的四气五味"
+  category: 经典原文
+  expect_files:
+    - classics/中药基本理论知识.md
+
+- q: "十二经脉的循行路线"
+  category: 经典原文
+  expect_files:
+    - classics/经络.md
+    - classics/_十二经脉_动画图.md
+
+- q: "常用腧穴的主治规律"
+  category: 经典原文
+  expect_files:
+    - classics/腧穴.md
+    - classics/穴位.md
+
+- q: "中医眼科的基础理论"
+  category: 经典原文
+  expect_files:
+    - classics/中医眼科备读.md
+
+- q: "伤科按摩的常用手法"
+  category: 经典原文
+  expect_files:
+    - classics/中医伤科按摩学.md
+
+- q: "阳虚怕冷是怎么来的"
+  category: 证型辨证
+  expect_files:
+    - modules/02_shanghan_other.md
+    - modules/05_huangdi_neijing.md
+    - modules/07_bimen_hantang.md
+
+- q: "阴虚和阳虚怎么区分"
+  category: 证型辨证
+  expect_files:
+    - modules/05_huangdi_neijing.md
+    - modules/08_huangdi_detail.md
+    - modules/14_yijinjing_bidu.md
+
+- q: "湿热是怎么形成的"
+  category: 证型辨证
+  expect_files:
+    - modules/05_huangdi_neijing.md
+    - modules/12_stanford_jingfang.md
+
+- q: "瘀血证的临床表现"
+  category: 证型辨证
+  expect_files:
+    - modules/05_huangdi_neijing.md
+    - modules/03_yian.md
+
+- q: "太阳阳明合病怎么治"
+  category: 证型辨证
+  expect_files:
+    - modules/13_shanghan_quebing.md
+    - modules/02_shanghan_other.md
+
+- q: "少阴病寒化证怎么用附子"
+  category: 证型辨证
+  expect_files:
+    - modules/02_shanghan_other.md
+    - modules/09_zhenjiu_bencao.md
+
+- q: "太阴病腹满怎么理解"
+  category: 证型辨证
+  expect_files:
+    - modules/02_shanghan_other.md
+
+- q: "倪师讲的乌梅丸医案"
+  category: 医案
+  expect_files:
+    - modules/03_yian.md
+    - cases/00_merged_table.md
+    - references/distilled/01-six-meridian-formulas.md
+
+- q: "倪师用什么方法治疗乳癌"
+  category: 医案
+  expect_files:
+    - modules/03_yian.md
+    - modules/07_bimen_hantang.md
+    - cases/01_cancer.md
+    - cases/00_merged_table.md
+
+- q: "倪师说的阳化气阴成形"
+  category: 医案
+  expect_files:
+    - modules/05_huangdi_neijing.md
+    - modules/08_huangdi_detail.md
+    - modules/06_liangdong.md
+
+- q: "倪师怎么讲四逆汤"
+  category: 医案
+  expect_files:
+    - modules/02_shanghan_other.md
+    - modules/01_shanghan_sun.md
+
+- q: "五输穴的五行属性"
+  category: 针灸
+  expect_files:
+    - classics/腧穴.md
+    - modules/09_zhenjiu_bencao.md
+
+- q: "倪师常用的补气要穴"
+  category: 针灸
+  expect_files:
+    - modules/09_zhenjiu_bencao.md
+    - classics/腧穴.md
