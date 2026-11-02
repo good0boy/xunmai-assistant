@@ -25,9 +25,9 @@ class Settings(BaseSettings):
 
     # ---------- 应用 ----------
     app_env: Literal["dev", "prod"] = "dev"
-    app_port: int = 8080
+    app_port: int = 8090
     log_level: str = "INFO"
-    cors_origins: str = "http://localhost:5173,http://localhost:8080"
+    cors_origins: str = "http://localhost:5173,http://localhost:8090"
     app_passcode: str = ""
     admin_token: str = ""
     rate_limit_per_min: int = 20

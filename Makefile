@@ -25,7 +25,7 @@ help:
 up:
 	docker compose up -d --build
 	@echo ""
-	@echo "前端 http://localhost:8080"
+	@echo "前端 http://localhost:8090"
 	@echo "接口 http://localhost:8000/api/docs"
 
 down:

@@ -26,7 +26,7 @@
 ```
 ┌──────────────┐   SSE    ┌─────────────────┐         ┌──────────┐
 │  Vue 3 前端  │ ───────► │  FastAPI 后端    │ ──────► │  Qdrant  │
-│  8080        │          │  8000           │  混合检索│  6333    │
+│  8090        │          │  8000           │  混合检索│  6333    │
 └──────────────┘          │                 │         └──────────┘
                           │  ├ 四级降级检索  │
                           │  ├ 五层 prompt   │         ┌──────────┐
@@ -72,7 +72,7 @@ docker compose up -d --build
 docker compose run --rm backend python -m scripts.build_index
 
 # 5. 打开
-#    http://localhost:8080
+#    http://localhost:8090
 ```
 
 模型下载走 HuggingFace，国内网络请确认 `.env` 里 `HF_ENDPOINT=https://hf-mirror.com` 已生效。
