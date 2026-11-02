@@ -69,6 +69,16 @@ def _can_write_file(p: Path) -> bool:
         return False
 
 
+def _can_write_dir(p: Path) -> bool:
+    try:
+        probe = p / ".write_probe"
+        probe.write_text("ok", encoding="utf-8")
+        probe.unlink()
+        return True
+    except OSError:
+        return False
+
+
 _prepared_db: str | None = None
 
 
@@ -77,6 +87,11 @@ def prepare_db_url(url: str) -> str:
 
     镜像里的文件通常只读，而 SQLite 的 WAL 模式必须能写 -wal/-shm，
     否则会在 PRAGMA 阶段直接抛错。能写就原地用，不能写就复制到临时目录。
+
+    **「文件还不存在」不等于「不可写」** —— 首次部署时 data/app.db 根本
+    没有，但目录可写，应该原地新建。曾经一律复制到 /tmp，结果：
+    每个容器各有一份独立数据库 → 一次性容器（sync_kb_meta）写进去的
+    元信息服务容器读不到，且容器一重启会话数据全丢。
     """
     global _prepared_db
     if _prepared_db is not None:
@@ -100,6 +115,9 @@ def prepare_db_url(url: str) -> str:
     work.mkdir(parents=True, exist_ok=True)
 
     if src.is_file() and _can_write_file(src):
+        target = src
+    elif not src.exists() and _can_write_dir(src.parent):
+        # 文件不存在但父目录可写 → 原地创建（这是首次部署的常态）
         target = src
     else:
         target = work / src.name
