@@ -2,6 +2,8 @@ name: xunmai
 
 services:
   qdrant:
+    # 服务器无外网时拉不了 Docker Hub：在本地 `docker save` 导出后上传
+    # `docker load` 导入（见 docs/部署指南.md 第 2 节）
     image: qdrant/qdrant:v1.12.4
     container_name: xunmai-qdrant
     volumes:

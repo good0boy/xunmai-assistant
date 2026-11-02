@@ -69,12 +69,14 @@ fetch-kb:
 build-judges:
 	docker compose run --rm backend python -m scripts.build_judge_corpus
 
-# 镜像里不装测试依赖（生产镜像保持精简），跑测试时临时装
+# 镜像里不装测试依赖（生产镜像保持精简），跑测试时临时装（阿里源）
+PIP_CN := -i https://mirrors.aliyun.com/pypi/simple/
+
 test:
-	docker compose run --rm backend sh -c "pip install -q -e '.[dev]' && python -m pytest -q"
+	docker compose run --rm backend sh -c "pip install -q -e '.[dev]' $(PIP_CN) && python -m pytest -q"
 
 lint:
-	docker compose run --rm backend sh -c "pip install -q ruff && ruff check app scripts tests"
+	docker compose run --rm backend sh -c "pip install -q ruff $(PIP_CN) && ruff check app scripts tests"
 
 front-test:
 	cd frontend && npm test

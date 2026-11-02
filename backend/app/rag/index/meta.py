@@ -36,11 +36,17 @@ def corpus_hash() -> str:
         if not root.is_dir():
             h.update(f"!missing:{root.name}".encode())
             continue
-        for p in sorted(root.rglob("*")):
-            if not p.is_file() or p.suffix.lower() not in _CORPUS_SUFFIXES:
-                continue
+        files = [
+            p for p in root.rglob("*")
+            if p.is_file() and p.suffix.lower() in _CORPUS_SUFFIXES
+        ]
+        # 排序键必须显式用 posix 相对路径字符串：Windows 的 Path 比较是
+        # 大小写不敏感（casefold）语义，Linux 是 ASCII 敏感 —— 直接
+        # sorted(Path) 会得到两种顺序，corpus_hash 随平台变化，
+        # 本地建的索引在 Linux 服务器上永远被判 stale（实测踩过）。
+        for p in sorted(files, key=lambda x: x.relative_to(root).as_posix()):
+            rel = p.relative_to(root).as_posix()
             try:
-                rel = p.relative_to(root).as_posix()
                 h.update(f"{root.name}/{rel}|".encode())
                 h.update(p.read_bytes())
             except OSError:

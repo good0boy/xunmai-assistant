@@ -1,8 +1,9 @@
 FROM node:22-alpine AS build
 WORKDIR /app
 
+# 国内源：npm 走 npmmirror（淘宝镜像）
 COPY package.json ./
-RUN npm install --no-audit --no-fund
+RUN npm install --no-audit --no-fund --registry=https://registry.npmmirror.com
 
 COPY . .
 RUN npm run build

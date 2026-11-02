@@ -8,16 +8,20 @@ ENV PYTHONUNBUFFERED=1 \
 
 WORKDIR /app
 
+# 国内源：apt 换阿里镜像（bookworm 的源在 /etc/apt/sources.list.d/debian.sources）
 # onnxruntime 需要 libgomp；curl 用于调试探活
-RUN apt-get update \
+RUN sed -i 's|deb.debian.org|mirrors.aliyun.com|g' /etc/apt/sources.list.d/debian.sources 2>/dev/null; \
+    sed -i 's|deb.debian.org|mirrors.aliyun.com|g' /etc/apt/sources.list 2>/dev/null; \
+    apt-get update \
  && apt-get install -y --no-install-recommends libgomp1 curl \
  && rm -rf /var/lib/apt/lists/*
 
+# 国内源：pip 走阿里 PyPI 镜像
 COPY pyproject.toml ./
 COPY app ./app
 
-RUN pip install --no-cache-dir -U pip \
- && pip install --no-cache-dir -e .
+RUN pip install --no-cache-dir -U pip -i https://mirrors.aliyun.com/pypi/simple/ \
+ && pip install --no-cache-dir -e . -i https://mirrors.aliyun.com/pypi/simple/
 
 COPY scripts ./scripts
 COPY tests ./tests
